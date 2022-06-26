@@ -20,6 +20,8 @@ module.exports = {
       "@pages": path.resolve(__dirname, "src/pages"),
       "@routers": path.resolve(__dirname, "src/routers"),
       "@styles": path.resolve(__dirname, "src/styles"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+
     },
   },
   module: {
@@ -41,6 +43,10 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.svg$/i,
+        type: 'asset/resource',
       },
     ],
   },

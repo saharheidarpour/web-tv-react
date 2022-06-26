@@ -8,7 +8,7 @@ const dark = {
     },
     background: {
       primary: color.gray_950,
-      secondary: color.gray_900,
+      secondary: color.secondary,
       alternative: color.tertiary,
       quarternary: color.quarternary,
       black: color.black,
@@ -24,6 +24,7 @@ const dark = {
       grey500: color.gray_500,
       grey400: color.gray_400,
       red200: color.red_200,
+      grey600: color.gray_600,
     },
     button: {
       primary: color.blue,
@@ -47,6 +48,11 @@ const dark = {
       secondary: color.tertiary,
       borderColor: color.gray_600,
     },
+    border:{
+      red300:color.red_300,
+      primary: color.blue,
+
+    }
   },
 };
 
