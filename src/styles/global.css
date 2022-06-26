@@ -1,0 +1,13 @@
+html,
+body {
+  background: #282828;
+  color: white;
+}
+a {
+  color: orange;
+  font-style: italic;
+  text-decoration: underline;
+}
+.t {
+  display: flex;
+}
