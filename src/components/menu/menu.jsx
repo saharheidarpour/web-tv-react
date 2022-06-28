@@ -1,55 +1,134 @@
-import React from "react";
-import { Container } from "./style";
+import React, { useEffect, useState, Icon } from "react";
+import {
+  Container,
+  MenuContent,
+  LogoWrapper,
+  SubTitleWrapper,
+  MenuList,
+  MenuListItem,
+  NavLinkWrapper,
+  NavLinkTitle,
+} from "./style";
 import Logo from "@assets/images/logo.svg";
 import Box from "@assets/images/box.svg";
 import { NavLink } from "react-router-dom";
+import { withFocusable } from "@noriginmedia/react-spatial-navigation";
+import LiveIcon from "@assets/images/live-icon.svg";
+import SeriesIcon from "@assets/images/series-icon.svg";
+import ArchieveIcon from "@assets/images/archieve-icon.svg";
+import SearchIcon from "@assets/images/search-icon.svg";
+import FilterIcon from "@assets/images/filter-icon.svg";
+import SettingIcon from "@assets/images/setting-icon.svg";
+import KidIcon from "@assets/images/kid-icon.svg";
+import { useNavigate } from "react-router-dom";
 
-export default function Menu(theme) {
+const NavLinkFocusable = withFocusable()(
+  ({ focused, title, route, children }) => {
+    return (
+      <NavLinkWrapper focused={focused} to={route}>
+        {children}
+        <NavLinkTitle>{title}</NavLinkTitle>
+      </NavLinkWrapper>
+    );
+  }
+);
+function Menu({ theme, setFocus }) {
+  const [position, setPosition] = useState();
+  const navigate = useNavigate();
+  const onBecameFocusedHandler = (e) => {
+    setPosition(e);
+  };
+  const navigateTo = (route) => {
+    navigate(route);
+  };
+  const onArrowPressHandler = (e) => {};
+  useEffect(() => {
+    setFocus();
+  }, []);
   return (
     <Container>
-      <div className="content">
-        <div className="logo">
-          <img className="logo" src={Logo} alt="logo" />
-          <img className="sub-title" src={Box} alt="box" />
-        </div>
-        <ul>
-          <li>
-            <NavLink to="/live" className="nav-links">
+      <MenuContent>
+        <LogoWrapper>
+          <Logo />
+          <SubTitleWrapper>
+            <Box />
+          </SubTitleWrapper>
+        </LogoWrapper>
+        <MenuList>
+          <MenuListItem>
+            {/* <NavLink to="/live" className="nav-links">
               پخش زنده
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/movies" className="nav-links">
-              فیلم و سریال
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/archieve" className="nav-links">
-              آرشیو محتوایی
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/search" className="nav-links">
-              جستجو
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/filter" className="nav-links">
-              فیلتر
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/kids" className="nav-links">
-              محیط کودک
-            </NavLink>
-          </li>
-        </ul>
-        <div className="setting">
-          <NavLink to="/" className="nav-links">
-            تنظیمات
-          </NavLink>
-        </div>
-      </div>
+            </NavLink> */}
+            <NavLinkFocusable
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => navigateTo("/live")}
+              title={"پخش زنده"}
+              route={"/live"}>
+              <LiveIcon />
+            </NavLinkFocusable>
+          </MenuListItem>
+          <MenuListItem>
+            <NavLinkFocusable
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => navigateTo("/movies")}
+              title={"فیلم و سریال"}
+              route={"/movies"}>
+              <SeriesIcon />
+            </NavLinkFocusable>
+          </MenuListItem>
+          <MenuListItem>
+            <NavLinkFocusable
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => navigateTo("/archieve")}
+              title={"آرشیو محتوایی"}
+              route={"/archieve"}>
+              <ArchieveIcon />
+            </NavLinkFocusable>
+          </MenuListItem>
+          <MenuListItem>
+            <NavLinkFocusable
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => navigateTo("/search")}
+              title={"جستجو"}
+              route={"/search"}>
+              <SearchIcon />
+            </NavLinkFocusable>
+          </MenuListItem>
+          <MenuListItem>
+            <NavLinkFocusable
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => navigateTo("/filter")}
+              title={"فیلتر"}
+              route={"/filter"}>
+              <FilterIcon />
+            </NavLinkFocusable>
+          </MenuListItem>
+          <MenuListItem>
+            <NavLinkFocusable
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => navigateTo("/kids")}
+              title={" محیط کودک"}
+              route={"/kids"}>
+              <KidIcon />
+            </NavLinkFocusable>
+          </MenuListItem>
+        </MenuList>
+        <NavLinkFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          onEnterPress={() => navigateTo("/")}
+          title={" تنظیمات "}
+          route={"/"}>
+          <SettingIcon />
+        </NavLinkFocusable>
+      </MenuContent>
     </Container>
   );
 }
+export default withFocusable()(Menu);

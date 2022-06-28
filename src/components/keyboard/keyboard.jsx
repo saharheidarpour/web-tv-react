@@ -1,25 +1,48 @@
-import { Container } from "./style";
-import backspace from "@assets/images/backspace-icon.svg";
-import space from "@assets/images/space-icon.svg";
-import React, { useState } from "react";
+import { Container, Input, Row, Button, Aside } from "./style";
+import Backspace from "@assets/images/backspace-icon.svg";
+import Space from "@assets/images/space-icon.svg";
+import React, { useState, useEffect } from "react";
 import { FaKeys, EnKeys } from "./keyboard.const";
+import { withFocusable } from "@noriginmedia/react-spatial-navigation";
+
 const persianKeys = FaKeys;
 const englishKeys = EnKeys;
-function Keyboard() {
+const ButtonComponent = ({ focused, keyDown, keyTitle, children, type }) => {
+  return (
+    <Button focused={focused} type={type} onClick={keyDown}>
+      {children ? children : keyTitle}
+    </Button>
+  );
+};
+const ButtonFocusable = withFocusable()(ButtonComponent);
+const InputFocusableComponent = withFocusable()(({ focused, serachValue }) => {
+  return <Input focused={focused} type="text" defaultValue={serachValue} />;
+});
+function Keyboard({ setFocus }) {
   const [lang, setLang] = useState("FA");
   const [keys, setKeys] = useState(FaKeys);
   const [searchVal, setSearchVal] = useState("");
+  const [position, setPosition] = useState();
+  useEffect(() => {
+    setFocus();
+  }, []);
 
+  const onBecameFocusedHandler = (e) => {
+    setPosition(e);
+  };
+
+  const onArrowPressHandler = (e) => {
+    // console.log(e);
+  };
   const changeLang = () => {
     setLang(lang === "FA" ? "EN" : "FA");
     setKeys(keys === FaKeys ? EnKeys : FaKeys);
   };
- const  keyDown = (key) => {
-    debugger;
+  const keyDown = (key) => {
     switch (key) {
       case "backspace":
         if (searchVal) {
-          setSearchVal(searchVal.slice(0,-1));
+          setSearchVal(searchVal.slice(0, -1));
         }
         break;
       case "space":
@@ -31,24 +54,53 @@ function Keyboard() {
     }
     console.log(searchVal);
   };
+  const search = () => {};
   return (
     <Container>
-      <input type="text" defaultValue={searchVal}  />
-      <div className="row actions">
-        <button className="backspace" onClick={()=>keyDown("backspace")}>
-          <img src={backspace} alt="backspace" />
-        </button>
-        <button className="space" onClick={()=>keyDown("space")}>
-          <img src={space} alt="space" />
-        </button>
-        <button onClick={changeLang}>{lang === "FA" ? "EN" : "FA"}</button>
-      </div>
-      <div className="row">
+      <InputFocusableComponent
+        onArrowPress={onArrowPressHandler}
+        onBecameFocused={onBecameFocusedHandler}
+        serachValue={searchVal}
+        onEnterPress={() => search()}
+      />
+      <Row>
+        <ButtonFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          onEnterPress={() => keyDown("backspace")}
+          type={"backspace"}
+          keyDown={() => keyDown("backspace")}>
+          <Backspace />
+        </ButtonFocusable>
+        <ButtonFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          onEnterPress={() => keyDown("space")}
+          type={"space"}
+          keyDown={() => keyDown("space")}>
+          <Space />
+        </ButtonFocusable>
+        <ButtonFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          onEnterPress={changeLang}
+          keyTitle={lang === "FA" ? "EN" : "FA"}
+          keyDown={() => changeLang()}></ButtonFocusable>
+      </Row>
+      <Row>
         {keys.map((key) => {
-          return <button key={key} onClick={()=>keyDown(key)}>{key}</button>;
+          return (
+            <ButtonFocusable
+              key={key}
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              onEnterPress={() => keyDown(key)}
+              keyTitle={key}
+              keyDown={() => keyDown(key)}></ButtonFocusable>
+          );
         })}
-      </div>
+      </Row>
     </Container>
   );
 }
-export default Keyboard;
+export default withFocusable()(Keyboard);

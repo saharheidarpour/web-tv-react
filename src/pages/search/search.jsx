@@ -1,64 +1,85 @@
 import Keyboard from "@components/keyboard";
-import { useCallback, useEffect } from "react";
-import { Container } from "./style";
+import {
+  Container,
+  Button,
+  Aside,
+  Title,
+  Section,
+  Row,
+  Main,
+  KeyboardContainer,
+  ResultItem,
+} from "./style";
 import { withFocusable } from "@noriginmedia/react-spatial-navigation";
 import React from "react";
-const Component = () => {
-  return ;
-};
-const Search = (props) => {
-  //   const handleUserKeyPress = useCallback((event) => {
-  //     const [position, setPosition] = useState();
-  //     const { key, keyCode } = event;
-  //     console.log(keyCode);
-  //     props.setFocus();
-  //   }, []);
-  //   useEffect(() => {
-  //     window.addEventListener("keydown", handleUserKeyPress);
-  //     return () => {
-  //       window.removeEventListener("keydown", handleUserKeyPress);
-  //     };
-  //   }, []);
+import { useEffect, useState } from "react";
 
+const KeyboardFocusable = withFocusable()(() => {
+  return <Keyboard></Keyboard>;
+});
+const ButtonComponent = ({ focused, title }) => {
+  return <Button focused={focused}>{title}</Button>;
+};
+const ButtonFocusable = withFocusable()(ButtonComponent);
+const Search = ({ setFocus }) => {
+  const [position, setPosition] = useState();
+
+  const onBecameFocusedHandler = (e) => {
+    setPosition(e);
+  };
+
+  const onArrowPressHandler = (e) => {};
+  useEffect(() => {
+    setFocus();
+  }, []);
   return (
     <Container>
-
-      <aside>
-      <div className="title">جستجو و سرچ</div>
-        <div className="keyboard">
-          <Keyboard></Keyboard>
-        </div>
-        <section>
+      <Aside>
+        <Title>جستجو و سرچ</Title>
+        <KeyboardContainer>
+          <KeyboardFocusable
+            onArrowPress={onArrowPressHandler}
+            onBecameFocused={onBecameFocusedHandler}></KeyboardFocusable>
+        </KeyboardContainer>
+        <Section>
           جستجو در بخش:
-          <div className="row">
-            <button>فیلم و سریال</button>
-            <button>آرشیو تلویزیون</button>
-          </div>
-        </section>
-      </aside>
-      <main>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-        <div className="item"></div>
-      </main>
+          <Row>
+            <ButtonFocusable
+              key={"key1"}
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              title={"فیلم و سریال"}></ButtonFocusable>
+            <ButtonFocusable
+              key={"key2"}
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              title={"آرشیو تلویزیون"}></ButtonFocusable>
+          </Row>
+        </Section>
+      </Aside>
+      <Main>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+        <ResultItem></ResultItem>
+      </Main>
     </Container>
   );
 };
-export default Search;
+export default withFocusable()(Search);

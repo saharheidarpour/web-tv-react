@@ -1,30 +1,36 @@
 import { createGlobalStyle } from "styled-components";
+import YekanBakhRegular from "@assets/fonts/YekanBakh-Regular.woff";
+import YekanBakhBold from "@assets/fonts/YekanBakh-Bold.woff";
+import YekanBakhBolder from "@assets/fonts/YekanBakh-ExtraBold.woff";
+
 const GlobalStyles = createGlobalStyle`
+ @font-face {
+  font-family: "Yekan-Bakh";
+  font-style: normal;
+  font-weight: 400;  
+  src:    local(''),
+  url('${YekanBakhRegular}') format("woff");
+  font-display: swap;
+}
   @font-face {
-    font-family: "Yekan-Bakh-FaN-Regular";
+    font-family: "Yekan-Bakh";
     font-style: normal;
-    font-weight: 400;    
-    src: url("/font/Yekan-Bakh-FaN-Regular.woff") format("woff");
+    font-weight: 600;
+    src: url('${YekanBakhBold}') format("woff");
     font-display: swap;
   }
   @font-face {
-    font-family: "Yekan-Bakh-FaN-Medium";
+    font-family: "Yekan-Bakh";
     font-style: normal;
-    font-weight: 400;
-    src: url("/font/Yekan-Bakh-FaN-Medium.woff") format("woff");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Yekan-Bakh-En-Medium";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/font/Yekan-Bakh-En-Medium.woff") format("woff");
+    font-weight: 900;
+    src: url('${YekanBakhBolder}') format("woff");
     font-display: swap;
   }
   body {
     font-size: 16px;
     line-height: 2;
-    font-family:  Yekan-Bakh-FaN-Regular;
+    font-family:  'Yekan-Bakh';
+    font-weight: 400;
     margin: 0;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;      
@@ -38,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
   }  
   input,textarea,button{
-    font-family:  Yekan-Bakh-FaN-Regular;
+    font-family:  Yekan-Bakh;
   }
   `;
 export default GlobalStyles;

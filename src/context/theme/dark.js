@@ -16,6 +16,8 @@ const dark = {
       grey800: color.gray_800,
       grey600: color.gray_600,
       grey500: color.gray_500,
+      red200: color.red_200,
+
     },
     text: {
       primary: color.white,

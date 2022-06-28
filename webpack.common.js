@@ -21,7 +21,6 @@ module.exports = {
       "@routers": path.resolve(__dirname, "src/routers"),
       "@styles": path.resolve(__dirname, "src/styles"),
       "@assets": path.resolve(__dirname, "src/assets"),
-
     },
   },
   module: {
@@ -45,9 +44,21 @@ module.exports = {
         },
       },
       {
-        test: /\.svg$/i,
-        type: 'asset/resource',
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
       },
+      {
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      }
     ],
   },
   plugins: [
