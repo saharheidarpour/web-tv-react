@@ -11,11 +11,10 @@ import {
 } from "./style";
 import Logo from "@assets/images/logo.svg";
 import Box from "@assets/images/box.svg";
-import { NavLink } from "react-router-dom";
 import { withFocusable } from "@noriginmedia/react-spatial-navigation";
 import LiveIcon from "@assets/images/live-icon.svg";
 import SeriesIcon from "@assets/images/series-icon.svg";
-import ArchieveIcon from "@assets/images/archieve-icon.svg";
+import ArchiveIcon from "@assets/images/archive-icon.svg";
 import SearchIcon from "@assets/images/search-icon.svg";
 import FilterIcon from "@assets/images/filter-icon.svg";
 import SettingIcon from "@assets/images/setting-icon.svg";
@@ -82,10 +81,10 @@ function Menu({ theme, setFocus }) {
             <NavLinkFocusable
               onArrowPress={onArrowPressHandler}
               onBecameFocused={onBecameFocusedHandler}
-              onEnterPress={() => navigateTo("/archieve")}
+              onEnterPress={() => navigateTo("/archive")}
               title={"آرشیو محتوایی"}
-              route={"/archieve"}>
-              <ArchieveIcon />
+              route={"/archive"}>
+              <ArchiveIcon />
             </NavLinkFocusable>
           </MenuListItem>
           <MenuListItem>

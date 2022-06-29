@@ -11,7 +11,7 @@ import TimeIcon from "@assets/images/time-icon.svg";
 import ViewIcon from "@assets/images/view-icon.svg";
 import { withFocusable } from "@noriginmedia/react-spatial-navigation";
 
-function ArchieveCard({ img,focused }) {
+function ArchiveCard({ img,focused }) {
   return (
     <Container focused={focused}>
       <CardThumbnail img={img} />
@@ -26,4 +26,4 @@ function ArchieveCard({ img,focused }) {
     </Container>
   );
 }
-export default withFocusable()(ArchieveCard);
+export default withFocusable()(ArchiveCard);
