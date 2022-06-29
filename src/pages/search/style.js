@@ -5,15 +5,15 @@ const Container = styled.div`
   display: flex;
   /* direction: ltr; */
 `;
-const ResultItem=styled.div`
+const ResultItem = styled.div`
   width: 197px;
-    height: 289px;
-    background-color: beige;
-    margin: 0 0 35px 15px;
-    border-radius: 5px;
-    &:nth-child(6n) {
-      margin-left: 0;
-    }
+  height: 289px;
+  background-color: beige;
+  margin: 0 0 35px 15px;
+  border-radius: 5px;
+  &:nth-child(6n) {
+    margin-left: 0;
+  }
 `;
 const KeyboardContainer = styled.div`
   margin-top: 24px;
@@ -24,6 +24,7 @@ const Main = styled.main`
   display: flex;
   flex-wrap: wrap;
   margin-right: 45px;
+  height: fit-content;
 `;
 const Section = styled.section`
   margin-top: 33px;
@@ -92,5 +93,5 @@ export {
   Row,
   Main,
   KeyboardContainer,
-  ResultItem
+  ResultItem,
 };

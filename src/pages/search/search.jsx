@@ -8,19 +8,19 @@ import {
   Row,
   Main,
   KeyboardContainer,
-  ResultItem,
 } from "./style";
 import { withFocusable } from "@noriginmedia/react-spatial-navigation";
 import React from "react";
 import { useEffect, useState } from "react";
+import MovieCard from "@components/movie-card";
+import ArchievedCard from "@components/archieve-card";
+import ThumbnailImage from "@assets/images/thumbnail.png";
 
-const KeyboardFocusable = withFocusable()(() => {
-  return <Keyboard></Keyboard>;
-});
 const ButtonComponent = ({ focused, title }) => {
   return <Button focused={focused}>{title}</Button>;
 };
 const ButtonFocusable = withFocusable()(ButtonComponent);
+
 const Search = ({ setFocus }) => {
   const [position, setPosition] = useState();
 
@@ -37,9 +37,9 @@ const Search = ({ setFocus }) => {
       <Aside>
         <Title>جستجو و سرچ</Title>
         <KeyboardContainer>
-          <KeyboardFocusable
+          <Keyboard
             onArrowPress={onArrowPressHandler}
-            onBecameFocused={onBecameFocusedHandler}></KeyboardFocusable>
+            onBecameFocused={onBecameFocusedHandler}></Keyboard>
         </KeyboardContainer>
         <Section>
           جستجو در بخش:
@@ -58,26 +58,38 @@ const Search = ({ setFocus }) => {
         </Section>
       </Aside>
       <Main>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
-        <ResultItem></ResultItem>
+        <ArchievedCard
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={ThumbnailImage}></ArchievedCard>
+        {/* <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable>
+        <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable>
+        <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable>
+        <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable>
+        <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable>
+        <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable>
+        <MovieCardFocusable
+          onArrowPress={onArrowPressHandler}
+          onBecameFocused={onBecameFocusedHandler}
+          img={movieImage}></MovieCardFocusable> */}
       </Main>
     </Container>
   );
