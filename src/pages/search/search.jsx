@@ -13,7 +13,7 @@ import { withFocusable } from "@noriginmedia/react-spatial-navigation";
 import React from "react";
 import { useEffect, useState } from "react";
 import MovieCard from "@components/movie-card";
-import ArchievedCard from "@components/archieve-card";
+import ArchivedCard from "@components/archive-card";
 import ThumbnailImage from "@assets/images/thumbnail.png";
 
 const ButtonComponent = ({ focused, title }) => {
@@ -58,10 +58,10 @@ const Search = ({ setFocus }) => {
         </Section>
       </Aside>
       <Main>
-        <ArchievedCard
+        <ArchivedCard
           onArrowPress={onArrowPressHandler}
           onBecameFocused={onBecameFocusedHandler}
-          img={ThumbnailImage}></ArchievedCard>
+          img={ThumbnailImage}></ArchivedCard>
         {/* <MovieCardFocusable
           onArrowPress={onArrowPressHandler}
           onBecameFocused={onBecameFocusedHandler}
