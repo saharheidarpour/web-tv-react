@@ -3,6 +3,8 @@ body {
   background: #1C1C1E;
   color: white;
   margin: 0;
+  padding: 0;
+  direction: rtl;
 }
 a {
   color: orange;
@@ -10,5 +12,14 @@ a {
   text-decoration: underline;
 }
 .t {
+  display: flex;
+}
+*:focus {
+  border: 2px solid black;
+}
+
+.App {
+  font-family: 'Yekan-Bakh';
+  text-align: center;
   display: flex;
 }

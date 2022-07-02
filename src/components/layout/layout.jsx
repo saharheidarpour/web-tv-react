@@ -3,14 +3,17 @@ import { Container } from "./style";
 import PropTypes from "prop-types";
 import Menu from "@components/menu";
 import { Outlet } from "react-router-dom";
-
+import { useContext } from "react";
+import { ThemeContextProvider } from "@context/theme";
 function Layout({ hasMenu = true, children }) {
   return (
-    <Container>
-      {hasMenu && <Menu />}
-      {children}
-      <Outlet />
-    </Container>
+    <ThemeContextProvider>
+      <Container>
+        {hasMenu && <Menu />}
+        {children}
+        <Outlet />
+      </Container>
+    </ThemeContextProvider>
   );
 }
 

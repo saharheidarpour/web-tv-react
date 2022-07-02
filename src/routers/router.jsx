@@ -4,6 +4,7 @@ import { Link, Route, Routes } from "react-router-dom";
 const Home = React.lazy(() => import("@pages/home"));
 const About = React.lazy(() => import("@pages/about"));
 const Authenticate = React.lazy(() => import("@pages/auth"));
+const Search = React.lazy(() => import("@pages/search"));
 
 export default function Router() {
   return (
@@ -31,6 +32,14 @@ export default function Router() {
           element={
             <React.Suspense fallback={<>...</>}>
               <Authenticate />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="search"
+          element={
+            <React.Suspense fallback={<>...</>}>
+              <Search />
             </React.Suspense>
           }
         />

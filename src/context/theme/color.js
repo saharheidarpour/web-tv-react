@@ -19,4 +19,5 @@ export default {
   blue: "#007aff",
   red: "#ff2631",
   red_200: "#d02028",
+  red_300: "#D10000",
 };
