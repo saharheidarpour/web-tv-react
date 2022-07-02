@@ -1,7 +1,8 @@
 html,
 body {
-  background: #282828;
+  background: #1C1C1E;
   color: white;
+  margin: 0;
 }
 a {
   color: orange;
