@@ -1,20 +1,11 @@
-import Keyboard from "@components/keyboard";
-import {
-  Container,
-  Button,
-  Aside,
-  Title,
-  Section,
-  Row,
-  Main,
-  KeyboardContainer,
-} from "./style";
-import { withFocusable } from "@noriginmedia/react-spatial-navigation";
-import React from "react";
-import { useEffect, useState } from "react";
-import MovieCard from "@components/movie-card";
-import ArchivedCard from "@components/archive-card";
 import ThumbnailImage from "@assets/images/thumbnail.png";
+import ArchivedCard from "@components/archive-card";
+import Keyboard from "@components/keyboard";
+import { withFocusable } from "@noriginmedia/react-spatial-navigation";
+import { useEffect, useState } from "react";
+import {
+  Aside, Button, Container, KeyboardContainer, Main, Row, Section, Title
+} from "./style";
 
 const ButtonComponent = ({ focused, title }) => {
   return <Button focused={focused}>{title}</Button>;

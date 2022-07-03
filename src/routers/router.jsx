@@ -3,8 +3,8 @@ import { Link, Route, Routes } from "react-router-dom";
 
 const Home = React.lazy(() => import("@pages/home"));
 const About = React.lazy(() => import("@pages/about"));
-const Authenticate = React.lazy(() => import("@pages/auth"));
 const Search = React.lazy(() => import("@pages/search"));
+const Authenticate = React.lazy(() => import("@pages/auth"));
 
 export default function Router() {
   return (

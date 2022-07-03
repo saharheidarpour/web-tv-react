@@ -1,19 +1,13 @@
 import styled from "styled-components";
 
-export const NumPadKeysContainer = styled.div`
-  background: #2c2c2e;
-  border-radius: 18px;
-  width: 539px;
-  height: 685px;
-  padding: 82px 88px;
-`;
+
 
 export const NumPadItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   direction: ltr;
-  margin-left: -12px;
-  margin-right: -12px;
+  margin-left: -6px;
+  margin-right: -6px;
 `;
 
 export const NumPadItemKey = styled.div`

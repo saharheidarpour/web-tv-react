@@ -33,10 +33,10 @@ export const EnterPhoneButton = styled.button`
   border: 2px solid #e51400;
   width: 342px;
   height: 84px;
-  transform: translateX(50%);
+  transform: translateX(-50%);
   color: #f2f2f2;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 37px;
   margin-top: 280px;
   cursror: pointer;
@@ -48,6 +48,7 @@ export const EnterPhoneButton = styled.button`
 
 export const AuthenticationContainer = styled.div`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   padding: 197px 254px 198px 177px;
   width: 100vw;
@@ -57,7 +58,6 @@ export const AuthenticationContainer = styled.div`
 
 export const RightSideSection = styled.div`
   display: flex;
-  align-items: center;
   flex: 0 0 calc(100% - 540px);
   max-width: calc(100% - 540px);
 
@@ -77,7 +77,7 @@ export const RightSideSection = styled.div`
     text-align: right;
     color: #ffffff;
     opacity: 0.6;
-    width: 652px;
+    width: 782px;
   }
 `;
 
@@ -102,4 +102,37 @@ export const LeftSideSection = styled.div`
   display: flex;
   flex: 0 0 540px;
   max-width: 540px;
+`;
+
+export const NumPadKeysContainer = styled.div`
+  background: #2c2c2e;
+  border-radius: 18px;
+  width: 539px;
+  height: 539px;
+  padding: 82px 88px;
+`;
+
+export const SubmitButton = styled.button`
+  height: 72px;
+  background: #1c1c1e;
+  border-radius: 8px;
+  border: 0;
+  width: 100%;
+  color: #aaafb5;
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  cursor: pointer;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  span {
+    display: block;
+    margin-right: 12px;
+  }
 `;

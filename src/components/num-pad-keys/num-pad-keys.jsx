@@ -1,74 +1,52 @@
+import DeleteKeyIcon from "@assets/images/delete-key.svg";
+
 import PropTypes from "prop-types";
-import { useState } from "react";
-import deleteKeyIcon from "../../assets/images/delete-key.svg";
-import rightArrorIcon from "../../assets/images/right-arrow.svg";
 import {
   NumPadItemKey,
   NumPadItemKeyButton,
   NumPadItemsContainer,
-  NumPadKeysContainer,
 } from "./style";
 
-export default function NumPadKeys({ inputBox, goToStep3 }) {
-  const [input, setInput] = useState("");
+export default function NumPadKeys({ input, setInput, maxLength }) {
   const numsItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0, "del"];
 
-  const renderNumsItems = () => {
-    const pressDeleteKey = () => {
-      setInput(input.slice(0, -1));
-    };
+  const pressDeleteKey = () => {
+    setInput(input.slice(0, -1));
+  };
 
-    const pressNumKeys = (num) => {
-      if (num === "del") {
-        if (input.length > 0) {
-          pressDeleteKey();
+  const pressNumKeys = (num) => {
+    if (num === "del") {
+      if (input.length > 0) {
+        pressDeleteKey();
+      }
+    } else {
+      if (maxLength) {
+        if (input.length < maxLength) {
+          setInput(input + num);
         }
       } else {
         setInput(input + num);
-        // setInput((prevState) => [...prevState, num]);
       }
-    };
-
-    const renderDeleteIcon = () => {};
-
-    return (
-      <NumPadItemsContainer>
-        {numsItems.map((item, index) => {
-          return (
-            <NumPadItemKey key={index}>
-              <NumPadItemKeyButton onClick={() => pressNumKeys(item)}>
-                {item === "del" ? (
-                  <img src={deleteKeyIcon} />
-                ) : (
-                  <span>{item}</span>
-                )}
-              </NumPadItemKeyButton>
-            </NumPadItemKey>
-          );
-        })}
-      </NumPadItemsContainer>
-    );
-  };
-
-  const pressSubmitKey = (value) => {
-    console.log("fasdf");
-    goToStep3();
+    }
   };
 
   return (
-    <NumPadKeysContainer>
-      {inputBox()}
-      {input}
-      {renderNumsItems()}
-      <button onClick={() => submitKey()}>
-        <img src={rightArrorIcon} />
-        <span>تایید و ادامه</span>
-      </button>
-    </NumPadKeysContainer>
+    <NumPadItemsContainer>
+      {numsItems.map((item, index) => {
+        return (
+          <NumPadItemKey key={index}>
+            <NumPadItemKeyButton onClick={() => pressNumKeys(item)}>
+              {item === "del" ? <DeleteKeyIcon /> : <span>{item}</span>}
+            </NumPadItemKeyButton>
+          </NumPadItemKey>
+        );
+      })}
+    </NumPadItemsContainer>
   );
 }
 
 NumPadKeys.propTypes = {
-  inputBox: PropTypes.func.isRequired,
-  goToStep3: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired,
+  setInput: PropTypes.func.isRequired,
+  maxLength: PropTypes.number,
 };

@@ -1,15 +1,14 @@
-import { createGlobalStyle } from "styled-components";
-import YekanBakhRegular from "@assets/fonts/YekanBakh-Regular.woff";
 import YekanBakhBold from "@assets/fonts/YekanBakh-Bold.woff";
 import YekanBakhBolder from "@assets/fonts/YekanBakh-ExtraBold.woff";
+import YekanBakhRegular from "@assets/fonts/YekanBakh-Regular.woff";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
  @font-face {
   font-family: "Yekan-Bakh";
   font-style: normal;
   font-weight: 400;  
-  src:    local(''),
-  url('${YekanBakhRegular}') format("woff");
+  src:    url('${YekanBakhRegular}') format("woff");
   font-display: swap;
 }
   @font-face {

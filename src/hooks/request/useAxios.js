@@ -1,8 +1,8 @@
-import React, {useEffect, useCallback, useRef, useReducer, useMemo} from "react";
 import AxiosClient, { CancelToken } from "@lib/axios-client";
-import useDeepCompareMemoize from "./useDeepCompareMemoize";
-import { createInitialState, configToObject } from "./utils";
+import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import reducer, { actions } from "./reducer";
+import useDeepCompareMemoize from "./useDeepCompareMemoize";
+import { configToObject, createInitialState } from "./utils";
 
 const DEFAULT_OPTIONS = {
   manual: false,
@@ -19,18 +19,18 @@ async function executeRequest(config, options, dispatch) {
           // TODO: clean data and decorate request response with status and error;
           options.onSuccess?.(body, success);
 
-          dispatch({ type: actions.SUCCESS, payload: body });
+          dispatch({ type: actions.SUCCESS, payload: body ? body : success });
         },
         (err) => {
           options.onError?.(err);
 
-          console.log(err);
+          // console.log(err);
           dispatch({ type: actions.ERROR, payload: err });
         }
       )
       .catch((err) => {
         options.onError?.(err);
-        console.log(err);
+        // console.log(err);
 
         dispatch({ type: actions.ERROR, payload: err });
       });
@@ -43,16 +43,16 @@ async function executeRequest(config, options, dispatch) {
 }
 
 function useAxios(_config, _options) {
-  const config = useMemo(() => configToObject(_config), useDeepCompareMemoize(_config));
+  const config = useMemo(
+    () => configToObject(_config),
+    useDeepCompareMemoize(_config)
+  );
   const options = useMemo(
     () => ({ ...DEFAULT_OPTIONS, ..._options }),
     useDeepCompareMemoize(_options)
   );
   const cancelRef = useRef();
-  const [state, dispatch] = useReducer(
-    reducer,
-    createInitialState(options)
-  );
+  const [state, dispatch] = useReducer(reducer, createInitialState(options));
 
   const cancelRequest = useCallback(() => {
     if (cancelRef.current) {
@@ -60,12 +60,15 @@ function useAxios(_config, _options) {
     }
   }, []);
 
-  const withCancelToken = useCallback((config) => {
-    config.cancelToken = new CancelToken((source) => {
-      cancelRef.current = source;
-    })
-    return config;
-  }, [config]);
+  const withCancelToken = useCallback(
+    (config) => {
+      config.cancelToken = new CancelToken((source) => {
+        cancelRef.current = source;
+      });
+      return config;
+    },
+    [config]
+  );
 
   useEffect(() => {
     if (!options.manual) {

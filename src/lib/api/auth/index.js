@@ -12,6 +12,28 @@ const ShenasehApiList = {
       { manual: true }
     );
   },
+  forgetPasswrod: () => {
+    return useAxios(
+      {
+        url: `/shenaseh/api/${process.env.SHENASEH_VERSION}/user/forget-password`,
+        method: "post",
+      },
+      {
+        manual: true,
+      }
+    );
+  },
+  verifyCode: () => {
+    return useAxios(
+      {
+        url: `/shenaseh/api/${process.env.SHENASEH_VERSION}/auth/step-two`,
+        method: "post",
+      },
+      {
+        manual: true,
+      }
+    );
+  }
 };
 
 export default ShenasehApiList;
