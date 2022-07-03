@@ -84,6 +84,7 @@ function Keyboard({ setFocus }) {
           onArrowPress={onArrowPressHandler}
           onBecameFocused={onBecameFocusedHandler}
           onEnterPress={changeLang}
+          type={"lang"}
           keyTitle={lang === "FA" ? "EN" : "FA"}
           keyDown={() => changeLang()}></ButtonFocusable>
       </Row>
