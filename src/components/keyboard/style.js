@@ -34,8 +34,22 @@ const Button = styled.button.attrs((props) => ({
   focused: props.focused,
 }))`
   height: 54px;
-  width: ${({ type }) =>
-    type ? (type === "backspace" ? "114px" : "auto") : "54px"};
+  ${(type) => {
+    if (type === "backspace") {
+      return `
+        width:"114px";
+    `;
+    } else if (type === "space") {
+      return `
+        width:"auto";
+    `;
+    } else {
+      return `
+      width:"54px";
+    `;
+    }
+  }}
+  min-width: 54px;
   flex: ${({ type }) => (type === "space" ? "1 1 auto" : "unset")};
   outline: none;
   border: none;

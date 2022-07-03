@@ -49,10 +49,16 @@ const Search = ({ setFocus }) => {
         </Section>
       </Aside>
       <Main>
-        <ArchivedCard
-          onArrowPress={onArrowPressHandler}
-          onBecameFocused={onBecameFocusedHandler}
-          img={ThumbnailImage}></ArchivedCard>
+        {[1, 2, 3, 4].map((item) => {
+          return (
+            <ArchivedCard
+              key={item}
+              onArrowPress={onArrowPressHandler}
+              onBecameFocused={onBecameFocusedHandler}
+              img={ThumbnailImage}></ArchivedCard>
+          );
+        })}
+
         {/* <MovieCardFocusable
           onArrowPress={onArrowPressHandler}
           onBecameFocused={onBecameFocusedHandler}
