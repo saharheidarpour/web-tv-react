@@ -15,10 +15,11 @@ const ButtonComponent = ({ focused, keyDown, keyTitle, children, type }) => {
   );
 };
 const ButtonFocusable = withFocusable()(ButtonComponent);
-const InputFocusableComponent = withFocusable()(({ focused, serachValue }) => {
-  return <Input focused={focused} type="text" defaultValue={serachValue} />;
+const InputFocusableComponent = withFocusable()(({ focused, value }) => {
+  console.log(value)
+  return <Input focused={focused} type="text" defaultValue={value} />;
 });
-function Keyboard({ setFocus }) {
+function Keyboard({ setFocus,searchValueStateChange }) {
   const [lang, setLang] = useState("FA");
   const [keys, setKeys] = useState(FaKeys);
   const [searchVal, setSearchVal] = useState("");
@@ -43,16 +44,18 @@ function Keyboard({ setFocus }) {
       case "backspace":
         if (searchVal) {
           setSearchVal(searchVal.slice(0, -1));
+          searchValueStateChange(searchVal.slice(0, -1));
         }
         break;
       case "space":
         setSearchVal(searchVal + " ");
+        searchValueStateChange(searchVal + " ");
         break;
       default:
         setSearchVal(searchVal + key);
+        searchValueStateChange(searchVal + key);
         break;
     }
-    console.log(searchVal);
   };
   const search = () => {};
   return (
@@ -60,8 +63,8 @@ function Keyboard({ setFocus }) {
       <InputFocusableComponent
         onArrowPress={onArrowPressHandler}
         onBecameFocused={onBecameFocusedHandler}
-        serachValue={searchVal}
         onEnterPress={() => search()}
+        value={searchVal}
       />
       <Row>
         <ButtonFocusable

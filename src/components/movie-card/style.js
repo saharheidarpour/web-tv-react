@@ -4,7 +4,10 @@ const Container = styled.div`
   width: 198px;
   height: 290px;
   border-radius: 8px;
-  background-image: url(${({ img }) => img});
+  background-image: url("${({ img }) => img}");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0 15px 35px 0;
   border: 2px solid
     ${({ focused, theme }) =>

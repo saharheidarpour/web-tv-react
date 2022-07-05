@@ -23,3 +23,13 @@ a {
   text-align: center;
   display: flex;
 }
+.infinite-scroll-component {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

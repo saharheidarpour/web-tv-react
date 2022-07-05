@@ -11,11 +11,12 @@ import TimeIcon from "@assets/images/time-icon.svg";
 import ViewIcon from "@assets/images/view-icon.svg";
 import { withFocusable } from "@noriginmedia/react-spatial-navigation";
 
-function ArchiveCard({ img,focused }) {
+function ArchiveCard({ data,focused }) {
+  console.log(data  )
   return (
     <Container focused={focused}>
-      <CardThumbnail img={img} />
-      <CardTitle>حجت الاسلام و المسلمین</CardTitle>
+      <CardThumbnail img={data.poster_ofoghi_small} />
+      <CardTitle>{data.title}</CardTitle>
       <CardDescription>سخنرانی شبکه سه</CardDescription>
       <Row>
         <TimeIcon />

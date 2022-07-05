@@ -4,7 +4,7 @@ const Container = styled.div`
   height: 252px;
   border: 2px solid
     ${({ focused, theme }) =>
-      focused ? theme.style.border.red300 : "transparent"};
+      focused ? theme?.style?.border?.red300 : "transparent"};
   border-radius: 8px;
   padding:4px;
   box-sizing: border-box;
