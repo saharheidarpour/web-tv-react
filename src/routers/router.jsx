@@ -10,7 +10,7 @@ export default function Router() {
   return (
     <Routes>
       {/* element={<Layout hasMenu="false" />} */}
-      <Route path="/" element={<Layout hasMenu="true"/>} >
+      <Route path="/">
         <Route
           index
           element={
@@ -39,7 +39,9 @@ export default function Router() {
           path="search"
           element={
             <React.Suspense fallback={<>...</>}>
+              <Layout hasMenu="false" >
               <Search />
+              </Layout>
             </React.Suspense>
           }
         />
