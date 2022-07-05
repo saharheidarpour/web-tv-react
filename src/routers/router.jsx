@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
-
+import Layout from "@components/layout";
 const Home = React.lazy(() => import("@pages/home"));
 const About = React.lazy(() => import("@pages/about"));
 const Search = React.lazy(() => import("@pages/search"));
@@ -10,7 +10,7 @@ export default function Router() {
   return (
     <Routes>
       {/* element={<Layout hasMenu="false" />} */}
-      <Route path="/">
+      <Route path="/" element={<Layout hasMenu="true"/>} >
         <Route
           index
           element={

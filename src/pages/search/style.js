@@ -24,7 +24,28 @@ const Main = styled.main`
   display: flex;
   flex-wrap: wrap;
   margin-right: 45px;
-  height: fit-content;
+  height: "100%";
+  overflow-y: auto;
+
+  /* scrollbar style */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px ${({ theme }) => theme?.style?.background?.grey600}; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${({ theme }) => theme?.style?.background?.grey500};
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: ${({ theme }) => theme?.style?.background?.grey600};
+}
 `;
 const Section = styled.section`
   margin-top: 33px;
